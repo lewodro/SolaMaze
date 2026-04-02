@@ -10,9 +10,7 @@
 
 Players navigate through procedurally generated 3D mazes in their browser, racing to reach the exit. The x402 payment architecture allows players to pay-per-play in SOL, with winners earning prize pool rewards. The backend manages game rooms, leaderboards, player scores, and payment verification.
 
-# SOLAMAZE
-
-A competitive, real-time 3D maze racing platform built for the browser, integrating Solana-based micropayments and reward distribution.
+> competitive, real-time 3D maze racing platform built for the browser, integrating Solana-based micropayments and reward distribution.
 
 ---
 

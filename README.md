@@ -2,16 +2,7 @@
 
 # development in process
 
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-
-![Solana](https://img.shields.io/badge/solana-%239945FF.svg?style=for-the-badge&logo=solana&logoColor=white)
-
-[![Gem Version](https://badge.fury.io/rb/x402-payments.svg)](https://badge.fury.io/rb/x402-payments)
-
-![Vivaldi](https://img.shields.io/badge/Vivaldi-EF3939?style=for-the-badge&logo=Vivaldi&logoColor=white)
-
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Solan (https://img.shields.io/badge/solana-%239945FF.svg?style=for-the-badge&logo=solana&logoColor=white) [![Gem Version](https://badge.fury.io/rb/x402-payments.svg)](https://badge.fury.io/rb/x402-payments) ![Vivaldi](https://img.shields.io/badge/Vivaldi-EF3939?style=for-the-badge&logo=Vivaldi&logoColor=white)
 
 A competitive 3D web maze game with Solana-based rewards. 
 
@@ -60,27 +51,6 @@ The system is designed to combine:
 - Global and per-match leaderboards
 - Historical match tracking
 
----
-
-## ───────────────────────────────
-## ░░ SYSTEM ARCHITECTURE
-## ───────────────────────────────
-
-Monorepo structure managed via pnpm workspaces:
-
-solamaze/
-├── apps/
-│ ├── client/ # Frontend application (React + Three.js)
-│ └── server/ # API + WebSocket server
-│
-├── packages/
-│ ├── game-core/ # Maze generation + game rules
-│ ├── payments/ # x402 integration layer
-│ └── types/ # Shared TypeScript definitions
-│
-├── prisma/ # Database schema & migrations
-├── openapi/ # API specification
-└── README.md
 
 
 ---
@@ -133,3 +103,88 @@ Base path:
 
 
 [ GAME ENDPOINTS ]
+
+/api/v1
+
+
+[ GAME ENDPOINTS ]
+
+
+POST /games/create
+POST /games/join
+GET /games/{id}
+
+
+[ PAYMENT ENDPOINTS ]
+
+
+POST /payments/verify
+
+
+[ LEADERBOARD ENDPOINTS ]
+
+
+GET /leaderboard/global
+GET /leaderboard/{gameId}
+
+
+[ PLAYER ENDPOINTS ]
+
+
+GET /players/{id}
+
+
+---
+
+## ───────────────────────────────
+## ░░ GAME ENGINE DETAILS
+## ───────────────────────────────
+
+The `game-core` package is responsible for deterministic gameplay logic:
+
+- Maze generation algorithms:
+  - Depth-First Search (DFS)
+  - Prim’s Algorithm
+- Seed-based reproducibility
+- Collision detection
+- Movement constraints
+- Time tracking and scoring
+
+All critical game logic is shared between client and server to ensure consistency.
+
+---
+
+## ───────────────────────────────
+## ░░ REAL-TIME LAYER
+## ───────────────────────────────
+
+WebSocket server responsibilities:
+
+- Player connection lifecycle
+- Room creation and matchmaking
+- Position synchronization
+- State broadcasting:
+  - Countdown
+  - Race start
+  - Player progress
+  - Completion events
+
+Client receives:
+- Player position updates
+- Game state transitions
+- Final results
+
+---
+
+## ───────────────────────────────
+## ░░ DATABASE MODEL
+## ───────────────────────────────
+
+Primary tables:
+
+
+players
+games
+sessions
+leaderboards
+transactions

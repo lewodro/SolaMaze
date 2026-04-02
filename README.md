@@ -1,10 +1,12 @@
+<div align="center">
+
 # SolaMaze
 
-# development in process
+**A competitive 3D web maze game with Solana-based rewards.**
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Solana](https://img.shields.io/badge/solana-%239945FF.svg?style=for-the-badge&logo=solana&logoColor=white) [![Gem Version](https://badge.fury.io/rb/x402-payments.svg)](https://badge.fury.io/rb/x402-payments) ![Vivaldi](https://img.shields.io/badge/Vivaldi-EF3939?style=for-the-badge&logo=Vivaldi&logoColor=white)
 
-A competitive 3D web maze game with Solana-based rewards. 
+<div></div>
 
 Players navigate through procedurally generated 3D mazes in their browser, racing to reach the exit. The x402 payment architecture allows players to pay-per-play in SOL, with winners earning prize pool rewards. The backend manages game rooms, leaderboards, player scores, and payment verification.
 

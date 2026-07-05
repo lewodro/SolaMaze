@@ -4,181 +4,121 @@
 
 **A competitive 3D web maze game with Solana-based rewards.**
 
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Solana](https://img.shields.io/badge/solana-%239945FF.svg?style=for-the-badge&logo=solana&logoColor=white) [![Gem Version](https://badge.fury.io/rb/x402-payments.svg)](https://badge.fury.io/rb/x402-payments) ![Vivaldi](https://img.shields.io/badge/Vivaldi-EF3939?style=for-the-badge&logo=Vivaldi&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge\&logo=typescript\&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge\&logo=githubactions\&logoColor=white) ![Solana](https://img.shields.io/badge/solana-%239945FF.svg?style=for-the-badge\&logo=solana\&logoColor=white) [![Gem Version](https://badge.fury.io/rb/x402-payments.svg)](https://badge.fury.io/rb/x402-payments) ![Vivaldi](https://img.shields.io/badge/Vivaldi-EF3939?style=for-the-badge\&logo=Vivaldi\&logoColor=white)
 
-<div> Players navigate through procedurally generated 3D mazes in their browser, racing to reach the exit. The x402 payment architecture allows players to pay-per-play in SOL, with winners earning prize pool rewards. The backend manages game rooms, leaderboards, player scores, and payment verification.
+<br />
 
-> competitive, real-time 3D maze racing platform built for the browser, integrating Solana-based micropayments and reward distribution.
+Players race through procedurally generated 3D mazes directly in the browser.
+The x402 payment architecture enables pay-per-play entry in SOL, while winners compete for prize pool rewards.
+
+**SolaMaze is a competitive real-time 3D maze racing platform built for browser gameplay, Solana micropayments, and reward-based competition.**
+
 </div>
-
 
 ---
 
 ## ░░ OVERVIEW
 
-SolaMaze is a multiplayer 3D maze racing system where players compete to reach the exit of procedurally generated environments. Each match is economically incentivized through a pay-per-play model, with rewards distributed to top performers.
+SolaMaze combines deterministic game logic, real-time multiplayer synchronization, and Solana-based payments into one competitive web game.
 
-The system is designed to combine:
-- Deterministic game logic for fairness
-- Real-time synchronization for competitive integrity
-- Blockchain-based payments for trustless reward handling
+Each match uses a reproducible maze seed, allowing every player to compete in the same environment under fair conditions. Players connect a wallet, pay to enter, race to the exit, and compete for rewards based on performance.
+
 ---
 
 ## ░░ TECHNOLOGY STACK
 
-[ FRONTEND ]
-- React
-- Three.js
-- React Three Fiber
-- Zustand (state management)
-- WebSocket client
-
-[ BACKEND ]
-- Node.js runtime
-- Fastify or Express (API layer)
-- WebSocket server (real-time engine)
-- PostgreSQL (data persistence)
-
-[ BLOCKCHAIN ]
-- Solana network
-- x402 micropayment protocol
-- Wallet adapters (Phantom, Solflare)
+| Layer      | Technologies                                                  |
+| ---------- | ------------------------------------------------------------- |
+| Frontend   | React, Three.js, React Three Fiber, Zustand, WebSocket client |
+| Backend    | Node.js, Fastify or Express, WebSocket server, PostgreSQL     |
+| Blockchain | Solana, x402 micropayments, Phantom, Solflare                 |
 
 ---
 
 ## ░░ CORE FEATURES
 
-[ GAMEPLAY ]
-- Procedurally generated 3D mazes
-- First-to-finish competitive structure
-- Deterministic seeds for reproducibility
-
-[ MULTIPLAYER ]
-- Real-time player synchronization via WebSockets
-- Server-authoritative movement validation
-- Race state broadcasting (start, progress, finish)
-
-[ PAYMENTS ]
-- Pay-per-entry model using Solana
-- Micropayment processing via x402 protocol
-- Trust-minimized reward distribution
-
-[ DATA ]
-- Persistent player profiles
-- Global and per-match leaderboards
-- Historical match tracking
-
-
-
+| Area        | Features                                                         |
+| ----------- | ---------------------------------------------------------------- |
+| Gameplay    | Procedural 3D mazes, deterministic seeds, first-to-finish racing |
+| Multiplayer | Real-time synchronization, game rooms, race state broadcasting   |
+| Payments    | Pay-per-entry in SOL, x402 verification, prize pool rewards      |
+| Data        | Player profiles, match history, global and match leaderboards    |
 
 ---
 
-## ───────────────────────────────
 ## ░░ GAME FLOW
-## ───────────────────────────────
 
-1. Player connects a Solana wallet
-2. Client requests entry into a game session
-3. Server generates a payment request
-4. Player submits transaction
-5. Server verifies payment via x402
-6. Player joins active game room
-7. Maze race begins
-8. Results are computed and stored
-9. Rewards are distributed
+```txt
+Wallet Connect → Entry Request → Payment Request → SOL Transaction → Payment Verification → Game Room Join → Maze Race → Results Stored → Rewards Distributed
+```
 
 ---
 
-## ───────────────────────────────
-## ░░ API DESIGN (OPENAPI)
-## ───────────────────────────────
+## ░░ API DESIGN
 
 Base path:
 
-
-[ GAME ENDPOINTS ]
-
+```txt
 /api/v1
+```
 
-
-[ GAME ENDPOINTS ]
-
-
-POST /games/create
-POST /games/join
-GET /games/{id}
-
-
-[ PAYMENT ENDPOINTS ]
-
-
-POST /payments/verify
-
-
-[ LEADERBOARD ENDPOINTS ]
-
-
-GET /leaderboard/global
-GET /leaderboard/{gameId}
-
-
-[ PLAYER ENDPOINTS ]
-
-
-GET /players/{id}
-
+| Category     | Endpoints                                               |
+| ------------ | ------------------------------------------------------- |
+| Games        | POST /games/create · POST /games/join · GET /games/{id} |
+| Payments     | POST /payments/verify                                   |
+| Leaderboards | GET /leaderboard/global · GET /leaderboard/{gameId}     |
+| Players      | GET /players/{id}                                       |
 
 ---
 
-## ───────────────────────────────
-## ░░ GAME ENGINE DETAILS
-## ───────────────────────────────
+## ░░ GAME ENGINE
 
-The `game-core` package is responsible for deterministic gameplay logic:
+The `game-core` package handles deterministic gameplay logic shared between the client and server.
 
-- Maze generation algorithms:
-  - Depth-First Search (DFS)
-  - Prim’s Algorithm
-- Seed-based reproducibility
-- Collision detection
-- Movement constraints
-- Time tracking and scoring
-
-All critical game logic is shared between client and server to ensure consistency.
+| System          | Responsibility                                      |
+| --------------- | --------------------------------------------------- |
+| Maze Generation | DFS, Prim’s Algorithm, seed-based reproducibility   |
+| Movement        | Collision detection, movement limits, validation    |
+| Scoring         | Time tracking, finish detection, result calculation |
 
 ---
 
-## ───────────────────────────────
 ## ░░ REAL-TIME LAYER
-## ───────────────────────────────
 
-WebSocket server responsibilities:
+The WebSocket layer manages player connections, room creation, matchmaking, position updates, countdown events, race progress, completion events, and final result broadcasting.
 
-- Player connection lifecycle
-- Room creation and matchmaking
-- Position synchronization
-- State broadcasting:
-  - Countdown
-  - Race start
-  - Player progress
-  - Completion events
-
-Client receives:
-- Player position updates
-- Game state transitions
-- Final results
+The client receives game state transitions, live player updates, maze data, progress events, and final leaderboard results.
 
 ---
 
-## ───────────────────────────────
 ## ░░ DATABASE MODEL
-## ───────────────────────────────
 
 Primary tables:
 
-
+```txt
 players
 games
 sessions
 leaderboards
 transactions
+```
+
+---
+
+## ░░ COMPETITIVE INTEGRITY
+
+SolaMaze is designed around fair, reproducible competition. Critical gameplay logic is shared between client and server, while the server validates movement, race progress, finish events, payments, and final results.
+
+---
+
+## ░░ PROJECT STATUS
+
+SolaMaze is currently an experimental multiplayer Web3 gaming project focused on competitive browser-based maze racing, Solana payments, and reward distribution.
+
+---
+
+<div align="center">
+
+**SolaMaze — race the maze, win the pool.**
+
+</div>
